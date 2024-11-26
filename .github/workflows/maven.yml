@@ -1,6 +1,4 @@
-
-name: Java CI with Maven
-
+name: Selenium CI with Maven
 on:
   push:
     branches: [ "main" ]
@@ -18,26 +16,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
-
       - name: Install Chrome
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
+      - name: Set Chrome options for CI
+        run: |
+          echo "CHROME_OPTS=--headless --no-sandbox --disable-dev-shm-usage" >> $GITHUB_ENV
+          ls -l /opt/google/chrome/chrome
 
-      - name: Maven test
+      - name: Run Tests
         run: mvn test
-        env:
-          CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
-          CI_RUN: true
-#      - name: Set Chrome options for CI
-#        run: |
-#          echo "CHROME_OPTS=--headless --no-sandbox --disable-dev-shm-usage" >> $GITHUB_ENV
-#          CHROME_OPTIONS: --remote-allow-origins=*;--disable-gpu;--no-sandbox;--disable-dev-shm-usage;--headless=new;--window-size=1920,1080
-#            CI_RUN: true
-
-
-#      - name: Run Tests
-#        run: mvn test
