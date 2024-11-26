@@ -32,4 +32,5 @@ public class BaseTest {
         }
         driver = new ChromeDriver(options);
     }
+
 }

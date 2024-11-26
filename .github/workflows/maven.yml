@@ -1,6 +1,4 @@
-
-name: Java CI with Maven
-
+name: Selenium CI with Maven
 on:
   push:
     branches: [ "main" ]
@@ -16,7 +14,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
+          distribution: 'corretto'
           cache: maven
       - name: Install Chrome
         run: |
