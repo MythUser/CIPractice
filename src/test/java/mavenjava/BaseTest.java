@@ -15,22 +15,19 @@ public class BaseTest {
 
     @BeforeMethod
     public void newDriver(){
-            // Устанавливаем драйвер с помощью WebDriverManager
-            // Получаем параметры Chrome из переменной окружения
-            ChromeOptions options = new ChromeOptions();
-            String chromeOpts = System.getenv("CHROME_OPTS");
-            if (chromeOpts != null) {
-                options.addArguments(chromeOpts.split(" "));
-            }
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        String chromeOpts = System.getenv("CHROME_OPTIONS");
+        if (chromeOpts != null) {
+            options.addArguments(chromeOpts.split(";"));
+        }
+        driver = new ChromeDriver(options); // Передаем options в ChromeDriver
         driver.get("https://askomdch.com/");
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
 
 
     @AfterMethod
-    public  void closeDriver(){
+    public void closeDriver() {
         driver.quit();
     }
 }
