@@ -20,16 +20,16 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
     }
 
-    @BeforeClass
-    public void setUp() {
-        // Устанавливаем драйвер с помощью WebDriverManager
-        WebDriverManager.chromedriver().setup();
-        // Получаем параметры Chrome из переменной окружения
-        ChromeOptions options = new ChromeOptions();
-        String chromeOpts = System.getenv("CHROME_OPTS");
-        if (chromeOpts != null) {
-            options.addArguments(chromeOpts.split(" "));
-        }
-        driver = new ChromeDriver(options);
-    }
+//    @BeforeClass
+//    public void setUp() {
+//        // Устанавливаем драйвер с помощью WebDriverManager
+//        WebDriverManager.chromedriver().setup();
+//        // Получаем параметры Chrome из переменной окружения
+//        ChromeOptions options = new ChromeOptions();
+//        String chromeOpts = System.getenv("CHROME_OPTS");
+//        if (chromeOpts != null) {
+//            options.addArguments(chromeOpts.split(" "));
+//        }
+//        driver = new ChromeDriver(options);
+//    }
 }
